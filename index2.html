@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    li {
+        list-style: none
+    }
+
+    div {
+        width: 200px;
+        margin: 0 auto;
+    }
+
+    ul {
+        height: 20px;
+        overflow: hidden
+    }
+</style>
+<script>
+    window.onload = function () {
+        tag()
+    };
+
+
+    function tag() {
+        var oUl = document.getElementById("ul");
+        var oLi = oUl.getElementsByTagName("li");
+        var trg = oLi[0].offsetHeight;
+        var time = null;
+        time = setInterval(function () {
+            ne(oLi[0], trg)
+        }, 3000);
+        function ne(oli, trg) {
+            var num = 0;
+            var moveTimter=null;
+            moveTimter = setInterval(function(){
+                if (num != trg || num > trg) {
+                    num = num +1;
+                    oli.style.marginTop = -num + "px";
+                } else {
+                    for (var i = 0; i < oLi.length; i++) {
+                        oLi[i].style.marginTop = '';
+                    }
+                    clearInterval(moveTimter);
+                    oUl.appendChild(oLi[0])
+                }
+            },30)
+
+        }
+
+
+    }
+
+</script>
+<body>
+<div id="box">
+    <ul id="ul">
+        <li><a href="#">2016年十月</a></li>
+        <li><a href="#">2016年九月</a></li>
+        <li><a href="#">2016年八月</a></li>
+        <li><a href="#">2016年七月</a></li>
+        <li><a href="#">2016年六月</a></li>
+        <li><a href="#">2016年五月</a></li>
+        <li><a href="#">2016年三月</a></li>
+        <li><a href="#">2016年二月</a></li>
+    </ul>
+</div>
+
+</body>
+</html>
